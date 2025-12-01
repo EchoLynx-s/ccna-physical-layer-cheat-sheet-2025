@@ -14,10 +14,12 @@ I use it to revise concepts and remember key ideas for labs, Packet Tracer, and 
 - [4.0 Introduction](#40-introduction)  
   - [4.0.1 Why should I take this module?](#401-why-should-i-take-this-module)  
   - [4.0.2 What will I learn to do in this module?](#402-what-will-i-learn-to-do-in-this-module)
-- [4.1 Purpose of the Physical Layer](#41-purpose-of-the-physical-layer)  
+ 
+- [4.1 Purpose of the Physical Layer](#41-purpose-of-the-physical-layer)
   - [4.1.1 The Physical Connection](#411-the-physical-connection)  
   - [4.1.2 The Physical Layer](#412-the-physical-layer)  
   - [4.1.3 Check Your Understanding – Purpose of the Physical Layer](#413-check-your-understanding--purpose-of-the-physical-layer)
+    
 - [4.2 Physical Layer Characteristics](#42-physical-layer-characteristics)  
   - [4.2.1 Physical Layer Standards](#421-physical-layer-standards)  
   - [4.2.2 Physical Components](#422-physical-components)  
@@ -26,6 +28,7 @@ I use it to revise concepts and remember key ideas for labs, Packet Tracer, and 
   - [4.2.5 Bandwidth](#425-bandwidth)  
   - [4.2.6 Bandwidth Terminology](#426-bandwidth-terminology)  
   - [4.2.7 Check Your Understanding – Physical Layer Characteristics](#427-check-your-understanding--physical-layer-characteristics)
+    
 - [4.3 Copper Cabling](#43-copper-cabling)  
   - [4.3.1 Characteristics of Copper Cabling](#431-characteristics-of-copper-cabling)  
   - [4.3.2 Types of Copper Cabling](#432-types-of-copper-cabling)  
@@ -33,11 +36,13 @@ I use it to revise concepts and remember key ideas for labs, Packet Tracer, and 
   - [4.3.4 Shielded Twisted-Pair (STP)](#434-shielded-twisted-pair-stp)  
   - [4.3.5 Coaxial Cable](#435-coaxial-cable)  
   - [4.3.6 Check Your Understanding – Copper Cabling](#436-check-your-understanding--copper-cabling)
+    
 - [4.4 UTP Cabling](#44-utp-cabling)  
   - [4.4.1 Properties of UTP Cabling](#441-properties-of-utp-cabling)  
   - [4.4.2 UTP Cabling Standards and Connectors](#442-utp-cabling-standards-and-connectors)  
   - [4.4.3 Straight-through and Crossover UTP Cables](#443-straight-through-and-crossover-utp-cables)  
   - [4.4.4 Activity – Cable Pinouts](#444-activity--cable-pinouts)
+    
 - [4.5 Fiber-Optic Cabling](#45-fiber-optic-cabling)  
   - [4.5.1 Properties of Fiber-Optic Cabling](#451-properties-of-fiber-optic-cabling)  
   - [4.5.2 Types of Fiber Media](#452-types-of-fiber-media)  
@@ -46,6 +51,7 @@ I use it to revise concepts and remember key ideas for labs, Packet Tracer, and 
   - [4.5.5 Fiber Patch Cords](#455-fiber-patch-cords)  
   - [4.5.6 Fiber versus Copper](#456-fiber-versus-copper)  
   - [4.5.7 Check Your Understanding – Fiber-Optic Cabling](#457-check-your-understanding--fiber-optic-cabling)
+    
 - [4.6 Wireless Media](#46-wireless-media)  
   - [4.6.1 Properties of Wireless Media](#461-properties-of-wireless-media)  
   - [4.6.2 Types of Wireless Media](#462-types-of-wireless-media)  
@@ -53,6 +59,7 @@ I use it to revise concepts and remember key ideas for labs, Packet Tracer, and 
   - [4.6.4 Check Your Understanding – Wireless Media](#464-check-your-understanding--wireless-media)  
   - [4.6.5 Packet Tracer – Connect a Wired and Wireless LAN](#465-packet-tracer--connect-a-wired-and-wireless-lan)  
   - [4.6.6 Lab – View Wired and Wireless NIC Information](#466-lab--view-wired-and-wireless-nic-information)
+    
 - [4.7 Module Practice and Quiz](#47-module-practice-and-quiz)  
   - [4.7.1 Packet Tracer – Physical Layer Exploration](#471-packet-tracer--physical-layer-exploration)  
   - [4.7.2 Packet Tracer – Connect the Physical Layer](#472-packet-tracer--connect-the-physical-layer)  
