@@ -427,3 +427,145 @@ Bandwidth is the **maximum capacity** of a medium to carry data, usually in bps,
 Throughput is the **actual rate of bit transfer** across the medium over time (usually lower than the bandwidth).
 
 
+---
+
+### 4.3 Copper Cabling  
+
+#### 4.3.1 Characteristics of Copper Cabling  
+
+Copper cabling is the most common type of cabling used in networks today. There are **three types of copper cabling**, each used in specific situations.
+
+Networks use copper media because it is:
+
+- Inexpensive  
+- Easy to install  
+- Has low resistance to electrical current  
+
+Limitations of copper media:
+
+- Limited by **distance** – signals weaken the farther they travel (signal attenuation).  
+- Susceptible to **interference** from other electrical and radio sources.  
+
+Data is transmitted over copper as **electrical pulses**.  
+A detector in the destination device must receive a strong enough signal to correctly match the original bits.  
+Because signals deteriorate over distance, copper cabling must follow **strict distance limits** defined by standards.
+
+**Interference sources**
+
+- **Electromagnetic interference (EMI) / Radio frequency interference (RFI)**  
+  - Can distort and corrupt the data signals carried on copper.  
+  - Sources: radio waves, fluorescent lights, electric motors, and other electromagnetic devices.  
+
+- **Crosstalk**  
+  - A disturbance caused when the electric or magnetic field of a signal on one wire induces a signal on an adjacent wire.  
+  - Example: in telephone circuits, you might hear part of another conversation from a neighboring circuit.  
+
+When current flows through a wire, it creates a magnetic field. Nearby wires can pick up this field and therefore the signal.
+
+**Countermeasures**
+
+To reduce EMI, RFI, and crosstalk:
+
+- Use copper cables with **metallic shielding** and proper grounding.  
+- Use **twisted wire pairs** to cancel out crosstalk.  
+- Follow good cabling practices:
+  - Choose the cable type and category suited for the environment.  
+  - Design the cable infrastructure to avoid known sources of interference.  
+  - Use correct handling, routing, and termination techniques.  
+
+
+#### 4.3.2 Types of Copper Cabling  
+
+There are **three main types of copper media** used in networking:
+
+- **Unshielded Twisted-Pair (UTP) cable**  
+- **Shielded Twisted-Pair (STP) cable**  
+- **Coaxial cable**  
+
+
+#### 4.3.3 Unshielded Twisted-Pair (UTP)  
+
+- **Most common networking media**.  
+- Terminated with **RJ-45 connectors**.  
+- Used to connect hosts to intermediary devices such as switches and routers in LANs.  
+
+A typical UTP cable:
+
+- Has **four pairs** of color-coded wires, twisted together.  
+- Is encased in a flexible **plastic outer jacket** that protects against minor physical damage.  
+- Uses the twisting of pairs to help protect against **signal interference** from other wires.  
+- Uses color codes to identify wires and pairs for proper termination.  
+
+Key characteristics in the UTP cross-section:
+
+1. **Outer jacket** – protects the copper wires from physical damage.  
+2. **Twisted pairs** – help protect the signal from interference.  
+3. **Color-coded plastic insulation** – electrically isolates wires and identifies each pair.  
+
+
+#### 4.3.4 Shielded Twisted-Pair (STP)  
+
+- Provides **better noise protection** than UTP.  
+- Is **more expensive** and **more difficult to install** than UTP.  
+- Uses **RJ-45 connectors**, but with **special shielded STP data connectors**.  
+
+STP combines:
+
+- **Shielding** to counter EMI and RFI.  
+- **Wire twisting** to counter crosstalk.  
+
+If the cable is **improperly grounded**, the shield can act as an antenna and pick up unwanted signals.
+
+Key features in the STP cross-section:
+
+1. **Outer jacket**  
+2. **Braided or foil shield** around all pairs  
+3. **Foil shields** around individual pairs  
+4. **Twisted pairs**  
+
+
+#### 4.3.5 Coaxial Cable  
+
+“Coaxial” (or **coax**) refers to **two conductors that share the same axis**.
+
+Coaxial cable components:
+
+- **Copper conductor** that carries the electronic signals.  
+- **Flexible plastic insulation** surrounding the inner conductor.  
+- **Woven copper braid or metallic foil** around the insulation:
+  - Acts as the second conductor in the circuit.  
+  - Shields the inner conductor and reduces outside electromagnetic interference.  
+- **Outer cable jacket** providing minor physical protection.  
+
+Common coaxial connectors:
+
+- **BNC**  
+- **N type**  
+- **F type**  
+
+Use cases (today):
+
+- **Wireless installations** – Coax cables attach antennas to wireless devices and carry RF energy between antenna and radio equipment.  
+- **Cable internet installations** – Providers may use fiber for long runs, but **inside the customer’s premises the wiring is still coax**.  
+
+
+#### 4.3.6 Check Your Understanding – Copper Cabling  
+
+**Question 1**  
+*Which of the following attaches antennas to wireless devices? It can also be bundled with fiber-optic cabling for two-way data transmission.*  
+
+- **Correct answer:** `Coaxial`  
+
+---
+
+**Question 2**  
+*Which of the following counters EMI and RFI by using shielding techniques and special connectors?*  
+
+- **Correct answer:** `STP`  
+
+---
+
+**Question 3**  
+*Which of the following is the most common network media?*  
+
+- **Correct answer:** `UTP`  
