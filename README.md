@@ -133,3 +133,118 @@ After this section, I should be able to look at a network diagram or a real rack
 | **Wireless Media**                   | Explain how devices connect using wired and wireless media on modern networks.   |
 
 
+
+### 4.1 Purpose of the Physical Layer
+
+High-level idea:  
+All the higher-layer protocols (Ethernet, IP, TCP, HTTP, etc.) eventually need to become **electrical, optical, or radio signals** on some medium. The **physical layer (Layer 1)** is the part of the stack that actually moves these bits between devices.
+
+It does **not** care about MAC addresses or IP addresses. Its job is:
+
+- Take a **complete frame from Layer 2**,  
+- Encode the bits into signals on a specific medium (copper, fiber, or wireless),  
+- Send those bits **one after another** across the link,  
+- Receive signals on the other side and turn them back into bits,  
+- Hand the clean bit stream back up to the **data link layer**.
+
+---
+
+#### 4.1.1 The Physical Connection
+
+Before any network communication can happen, a device needs a **physical connection** to the local network. That can be:
+
+- **Wired connection**
+  - Uses a **cable** (typically UTP Ethernet or fiber) to connect to a switch or a router.
+  - Common in offices where desktops and some laptops plug into a switch for stable, high-speed access.
+- **Wireless connection**
+  - Uses **radio waves** between a device and a **wireless access point (AP)** or a wireless router.
+  - Typical at home and in public spaces (Wi-Fi).
+
+**Home/small office example – wireless router**
+
+A typical home “Wi-Fi router” usually contains:
+
+1. **Wireless antennas** – built-in or external, providing WLAN coverage.
+2. **Multiple Ethernet switchports** – for wired devices (PCs, printers, consoles).
+3. **Internet/WAN port** – uplink to the ISP modem or fiber ONT.
+
+**Network Interface Cards (NICs)**
+
+End devices need a NIC to connect at Layer 1:
+
+- **Ethernet NIC** – for **wired** connections (RJ-45 port, UTP cable).
+- **WLAN NIC** – for **wireless** connections (built-in Wi-Fi adapter).
+
+Some devices have:
+
+- Only Ethernet NIC → must use a cable.  
+- Only WLAN NIC → can *only* connect wirelessly.  
+- Both → user can choose wired vs wireless depending on performance and mobility needs.
+
+Not all physical connections provide the same performance – cable type, distance, interference, and wireless signal quality all affect bandwidth and reliability.
+
+---
+
+#### 4.1.2 The Physical Layer
+
+The **OSI physical layer** is responsible for actually transporting the bits that make up a data link frame.
+
+From the **sending** device’s point of view:
+
+1. Layer 2 (Data Link) hands down a **complete frame**.
+2. The physical layer:
+   - **Encodes** the bits of that frame into signals (voltages, light pulses, or radio waves).
+   - Sends those signals **one bit at a time** over the medium.
+
+From the **receiving** device’s point of view:
+
+1. The physical layer:
+   - Receives the incoming signals from the medium.
+   - Converts them back into a **stream of bits**.
+2. It passes the bit stream **up to the data link layer**, which re-assembles the full frame and checks it (FCS, MAC addresses, etc.).
+
+Key points to remember:
+
+- Layer 1 works with **bits and signals**, not addresses or protocols.
+- It defines:
+  - How 0s and 1s are represented on a given medium,
+  - Timing and synchronization of signals,
+  - Physical characteristics of connectors, cables, and wireless channels.
+- The PDU that arrives at the physical layer for transmission is always a **frame** (from Layer 2).
+
+---
+
+#### 4.1.3 Check Your Understanding – Purpose of the Physical Layer
+
+**Question 1**  
+*True or false? The physical layer is only concerned with wired network connections.*  
+
+- **Answer:** `False`  
+- **Why:** Layer 1 covers **any** physical media – **wired (copper/fiber)** *and* **wireless (radio)**. Wi-Fi is still the physical layer, just using radio waves instead of a cable.
+
+---
+
+**Question 2**  
+*True or false? When a frame is encoded by the physical layer, all bits are sent over the media at the same time.*  
+
+- **Answer:** `False`  
+- **Why:** On typical data networks, bits are sent **serially**, one after another, along the medium. The physical layer does **not** blast all bits simultaneously; it clocks them out in sequence.
+
+---
+
+**Question 3**  
+*The physical layer of the receiving device passes bits up to which higher-level layer?*  
+
+- **Answer:** `Data link layer`  
+- **Why:** Layer 1 only cares about bits. Once the bit stream is recovered, it is handed to **Layer 2 (Data Link)**, which rebuilds the full frame and checks MAC/FCS fields.
+
+---
+
+**Question 4**  
+*What PDU is received by the physical layer for encoding and transmission?*  
+
+- **Answer:** `Frame`  
+- **Why:** The data link layer creates the **frame** (header + payload + trailer). That complete frame is then given to the physical layer, which encodes its bits onto the medium.
+
+
+
