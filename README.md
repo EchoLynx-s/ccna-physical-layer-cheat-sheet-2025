@@ -568,4 +568,117 @@ Use cases (today):
 **Question 3**  
 *Which of the following is the most common network media?*  
 
-- **Correct answer:** `UTP`  
+- **Correct answer:** `UTP`
+
+
+---
+
+## 4.4 UTP Cabling
+
+### 4.4.1 Properties of UTP Cabling
+
+Unshielded Twisted-Pair (UTP) cabling is the standard copper cabling used in LANs.
+
+- UTP used as a networking medium = **four pairs** of colour-coded copper wires.
+- The pairs are **twisted together** and encased in a flexible plastic sheath → small diameter, easy to install.
+
+UTP does **not** use metallic shielding against EMI/RFI. Instead, it reduces interference by:
+
+- **Cancellation**  
+  - Two wires form a circuit.  
+  - Their magnetic fields are equal and opposite → they cancel each other out and also cancel some external EMI/RFI.
+
+- **Varying twists per pair**  
+  - Each coloured pair has a **different number of twists per metre** (per the spec).  
+  - Different twist rates reduce crosstalk between pairs.  
+  - Example from the figure: the orange/white-orange pair is twisted less than the blue/white-blue pair.
+
+UTP relies on these twisting and cancellation effects to provide **self-shielding** and limit signal degradation.
+
+---
+
+### 4.4.2 UTP Cabling Standards and Connectors
+
+UTP cabling follows standards jointly defined by the **TIA/EIA**.
+
+**TIA/EIA-568** (commercial cabling standard for LANs) defines:
+
+- Cable types  
+- Cable lengths  
+- Connectors  
+- Cable termination  
+- Methods of testing cable  
+
+The **electrical characteristics** of copper cabling are defined by the **IEEE**.  
+Cables are grouped into **categories** based on the bandwidth they can support.
+
+From the module:
+
+- **Category 3 (Cat3)**  
+  - Originally for voice, later used for data transmission.
+- **Category 5 (Cat5)**  
+  - Used for data transmission, supports **100 Mbps** (100BASE-TX).
+- **Category 5e (Cat5e)**  
+  - Improved Cat5, supports **1000 Mbps**.
+- **Category 6 (Cat6)**  
+  - Added separator between pairs to support higher speeds, up to **10 Gbps**.
+- **Category 7 (Cat7)**  
+  - Also supports **10 Gbps**.
+- **Category 8 (Cat8)**  
+  - Supports **40 Gbps**.
+
+> Higher categories are designed for higher data rates. Cat5e is now the minimum; Cat6 is recommended for new installations.
+
+#### RJ-45 Connectors
+
+- UTP Ethernet cables are usually terminated with an **RJ-45** connector.
+- **RJ-45 plug** (male) is crimped onto the cable end.  
+- **RJ-45 sockets/jacks** (female) are in walls, patch panels, or devices.
+
+Bad terminations (wires untwisted too far, exposed, not fully covered by the sheath) can degrade physical-layer performance.  
+Proper terminations keep twists close to the connector and fully cover the wires with the sheath.
+
+---
+
+### 4.4.3 Straight-through and Crossover UTP Cables
+
+Different uses require different **wiring conventions** (pinouts) on the RJ-45 connectors.
+
+The module defines three main cable types:
+
+#### Ethernet Straight-through
+
+- **Most common** networking cable.
+- Used to interconnect **different** device types, for example:
+  - Host ↔ Switch  
+  - Switch ↔ Router
+
+#### Ethernet Crossover
+
+- Used to interconnect **similar** devices, for example:
+  - Switch ↔ Switch  
+  - Host ↔ Host  
+  - Router ↔ Router
+- Considered **legacy** now, because modern NICs support **auto-MDIX** (medium-dependent interface crossover), which automatically detects the needed pair swapping internally.
+
+#### Rollover Cable
+
+- **Cisco proprietary** cable type.
+- Used to connect a **workstation serial port** to a **router or switch console port**, usually with an adapter.
+
+Using the wrong cable type (straight-through vs crossover vs rollover) will not normally damage equipment, but **devices will not communicate**.  
+Checking the cable type and pinouts is a first troubleshooting step.
+
+#### T568A and T568B Standards
+
+TIA/EIA-568 defines the **T568A** and **T568B** wiring standards for RJ-45 connectors.  
+The figure in the module shows how each coloured wire pair maps to the 8 pins.
+
+From the “Cable Types and Standards” table:
+
+| Cable Type              | Standard                        | Application                                                                                 |
+| ----------------------- | ------------------------------- | ------------------------------------------------------------------------------------------ |
+| Ethernet Straight-through | Both ends **T568A** or both ends **T568B** | Connects a network host to a network device such as a switch or hub                        |
+| Ethernet Crossover      | One end **T568A**, other end **T568B**     | Connects two network hosts, or two intermediary devices (e.g., switch ↔ switch, router ↔ router) |
+| Rollover                | Cisco proprietary               | Connects a workstation serial port to a router console port, using an adapter              |
+
