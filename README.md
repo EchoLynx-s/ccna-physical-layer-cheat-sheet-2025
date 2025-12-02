@@ -682,3 +682,378 @@ From the “Cable Types and Standards” table:
 | Ethernet Crossover      | One end **T568A**, other end **T568B**     | Connects two network hosts, or two intermediary devices (e.g., switch ↔ switch, router ↔ router) |
 | Rollover                | Cisco proprietary               | Connects a workstation serial port to a router console port, using an adapter              |
 
+
+---
+
+
+### 4.5 Fiber-Optic Cabling
+
+#### 4.5.1 Properties of Fiber-Optic Cabling
+
+- Fiber-optic cabling is the second major cabling type used in networks.  
+- It is more expensive than copper, so it is not as common, but it has properties that make it the best option in some situations.
+
+Key properties:
+
+- **Very long distances & high bandwidth**
+  - Optical fiber can transmit data over longer distances and at higher bandwidths than any other common networking media.
+  - It is commonly used to interconnect network devices where long runs and high speeds are required.
+
+- **Immunity to EMI and RFI**
+  - Unlike copper wires, fiber-optic cable does **not** carry electrical current.
+  - Signals are encoded as **light impulses** on an extremely thin, transparent strand of very pure glass (not much bigger than a human hair).
+  - Because it uses light instead of electricity, fiber is completely immune to electromagnetic and radio frequency interference.
+
+- **How fiber guides light**
+  - The fiber core acts as a **waveguide** or *“light pipe”* to transmit light between two ends with minimal signal loss.
+  - Analogy: imagine a long paper-towel tube coated like a mirror on the inside and a laser pointer shining through it. Fiber works on the same idea, but on a much smaller scale and with advanced optics.
+
+---
+
+#### 4.5.2 Types of Fiber Media
+
+Fiber-optic cables are broadly classified into two types:
+
+- **Single-Mode Fiber (SMF)**
+- **Multimode Fiber (MMF)**
+
+**Single-Mode Fiber (SMF)**
+
+- Has a **very small glass core** (≈ 9 μm diameter).
+- Uses **expensive laser technology** to send a single ray of light.
+- Light follows a **single, straight path** down the fiber.
+- Common in **long-distance** links spanning **hundreds of kilometers**, such as:
+  - Long-haul telephony
+  - Cable TV backbones
+
+**Multimode Fiber (MMF)**
+
+- Has a **larger glass core** (≈ 50–62.5 μm).
+- Uses **LED emitters** to send light pulses into the core at different angles.
+- Light can take **multiple paths** through the fiber, as shown by the zig-zag pattern in the diagram.
+- MMF is popular in **LANs** because LEDs are cheaper and still provide:
+  - Up to **10 Gbps** over link lengths of up to **≈ 550 meters**.
+- MMF experiences more **dispersion** (spreading of the light pulse over time), which limits the maximum distance before signal loss becomes too high.
+
+---
+
+#### 4.5.3 Fiber-Optic Cabling Usage
+
+Fiber-optic cabling is now used in four main types of environments:
+
+- **Enterprise Networks**
+  - Backbone cabling and interconnection of infrastructure devices inside organizations.
+
+- **Fiber-to-the-Home (FTTH)**
+  - Always-on broadband services delivered directly to homes and small businesses.
+
+- **Long-Haul Networks**
+  - Service-provider links that connect **cities and countries**.
+
+- **Submarine Cable Networks**
+  - High-speed, high-capacity undersea cables that span **transoceanic distances** and survive harsh environments.
+
+> In this course, the focus is on the **use of fiber within the enterprise**, especially as backbone cabling.
+
+---
+
+#### 4.5.4 Fiber-Optic Connectors
+
+An **optical-fiber connector** terminates the end of an optical fiber. Many connector types exist, differing mainly in size and coupling method. Businesses select connector types based on the equipment they use.
+
+> Some switches and routers accept fiber via **small form-factor pluggable (SFP) transceivers**. Different SFP models support different fiber types and speeds.
+
+Main connector types shown:
+
+- **ST (Straight-Tip) Connector**
+  - One of the earliest fiber connectors.
+  - Uses a **“twist-on / twist-off” bayonet-style** locking mechanism.
+
+- **SC (Subscriber Connector / Standard Connector)**
+  - Often called **“square” or “standard”** connector.
+  - Widely used in LAN and WAN environments.
+  - Uses a **push-pull** mechanism for secure insertion.
+  - Supports both **single-mode and multimode** fiber.
+
+- **LC Simplex Connector**
+  - A **smaller version of the SC** connector, sometimes called a *“little connector”* or *“local connector”*.
+  - Popular due to its **compact size**, allowing higher port density.
+
+- **Duplex Multimode LC Connector**
+  - Similar to LC simplex but with **two fibers** in a **duplex** housing.
+  - Used when transmit and receive fibers are both present in a single, paired connector.
+
+> Historically, full-duplex operation required **two separate fibers** (one to transmit, one to receive) terminated with **single-fiber connectors**. Duplex connectors (like duplex LC) bundle both fibers into one connector. Some BX standards (e.g., 100BASE-BX) can even send and receive on a **single fiber** using different wavelengths.
+
+---
+
+#### 4.5.5 Fiber Patch Cords
+
+- Fiber patch cords are used to **interconnect infrastructure devices** (e.g., switches, routers, patch panels).
+- **Color of the outer jacket** helps distinguish the type of fiber:
+  - **Yellow** – single-mode fiber cables
+  - **Orange or aqua** – multimode fiber cables
+
+Patch-cord examples shown in the material:
+
+- **SC–SC Multimode Patch Cord**
+- **LC–LC Single-Mode Patch Cord**
+- **ST–LC Multimode Patch Cord**
+- **SC–ST Single-Mode Patch Cord**
+
+> **Note:** Fiber cables should be protected with a **small plastic cap** on the connector when not in use to prevent contamination or damage to the fiber endface.
+
+---
+
+#### 4.5.6 Fiber versus Copper
+
+There are many advantages to using fiber-optic cable compared to copper (UTP) cabling. In most enterprise environments, optical fiber is primarily used as:
+
+- **Backbone cabling** for high-traffic, point-to-point links between distribution facilities.
+- **Inter-building links** in multi-building campuses.
+
+Because fiber does **not conduct electricity** and has **low signal loss**, it is well-suited for these roles.
+
+**UTP vs. Fiber-Optic Cabling Comparison**
+
+| Implementation Issue          | UTP Cabling                     | Fiber-Optic Cabling                          |
+|------------------------------|----------------------------------|----------------------------------------------|
+| **Bandwidth supported**      | 10 Mb/s – 10 Gb/s               | 10 Mb/s – 100 Gb/s                           |
+| **Distance**                 | Relatively short (≈ 1–100 m)    | Relatively long (≈ 1–100,000 m)             |
+| **Immunity to EMI and RFI** | Low                             | High (completely immune)                     |
+| **Immunity to electrical hazards** | Low                      | High (completely immune)                     |
+| **Media & connector costs** | Lowest                          | Highest                                      |
+| **Installation skills required** | Lowest                     | Highest                                      |
+| **Safety precautions**       | Lowest                          | Highest                                      |
+
+Summary:
+
+- **UTP** is cheaper, easier to install, and has lower safety requirements.  
+- **Fiber** offers much **greater distance, bandwidth, and immunity** to interference and electrical hazards, but at higher cost and with stricter installation and safety requirements.
+
+---
+
+### 4.5.7 Check Your Understanding – Fiber-Optic Cabling
+
+1. **Which of the following fiber-optic cable types can help data travel approximately 500 meters?**  
+   **Answer:** Multimode
+
+2. **Which of the following fiber-optic cable types use light emitting diodes (LEDs) as a data light source transmitter?**  
+   **Answer:** Multimode
+
+3. **Which of the following fiber-optic cable types use lasers in a single stream as a data light source transmitter?**  
+   **Answer:** Single-mode
+
+4. **Which of the following fiber-optic cable types is used to connect long-distance telephony and cable TV applications?**  
+   **Answer:** Single-mode
+
+5. **Which of the following fiber-optic cable types can travel approximately 100 km?**  
+   **Answer:** Single-mode
+
+6. **Which of the following fiber-optic cable types is used within a campus network?**  
+   **Answer:** Multimode
+
+---
+## 4.6 Wireless Media
+
+### 4.6.1 Properties of Wireless Media
+
+- Wireless media use **electromagnetic signals** (radio or microwave frequencies) to carry the binary data of communications.
+- They are the **third way** to connect to the physical layer (besides copper and fiber).
+- Wireless provides the **greatest mobility**, and the number of wireless-enabled devices keeps increasing.
+- Today, wireless is a **primary way** users connect to both **home and enterprise networks**.
+
+**Limitations of wireless**
+
+- **Coverage area**  
+  - Works best in open environments.  
+  - Building materials, structures, and local terrain can limit coverage.
+
+- **Interference**  
+  - Susceptible to interference from common devices: cordless phones, fluorescent lights, microwave ovens, and other wireless systems.
+
+- **Security**  
+  - No physical medium is required to join; unauthorized devices/users may gain access.  
+  - Strong network security is a **major part** of wireless network administration.
+
+- **Shared medium / half-duplex**  
+  - WLANs operate in **half-duplex**: only one device can send or receive at a time.  
+  - All users share the same medium, so more users usually means **less bandwidth per user**.
+
+> Even though wireless is very popular for end-device connectivity, **copper and fiber** are still the main physical media for **intermediary devices** (routers, switches, etc.).
+
+---
+
+### 4.6.2 Types of Wireless Media
+
+The standards for wireless data communications define:
+
+- How data is **encoded** into radio signals  
+- The **frequency** and **power** of transmission  
+- How signals are **received and decoded**  
+- **Antenna** design and construction
+
+**Main wireless standards**
+
+- **Wi-Fi (IEEE 802.11)**  
+  - WLAN technology used for most wireless LANs.  
+  - Uses **CSMA/CA** (Carrier Sense Multiple Access with Collision Avoidance): NIC listens first and transmits only when the channel is clear.  
+  - Devices follow IEEE 802.11 and are certified by the **Wi-Fi Alliance**.
+
+- **Bluetooth (IEEE 802.15)**  
+  - **WPAN** (Wireless Personal Area Network) standard.  
+  - Typical range: **1 to 100 meters**.
+
+- **WiMAX (IEEE 802.16)**  
+  - Wireless broadband standard (Worldwide Interoperability for Microwave Access).  
+  - Uses point-to-multipoint topologies to provide **broadband access**.
+
+- **Zigbee (IEEE 802.15.4)**  
+  - Designed for **low-data-rate, low-power** communications.  
+  - Short-range, low bandwidth, but **long battery life**.  
+  - Used in **industrial** and **IoT** environments (e.g., smart light switches, medical data collection).
+
+> Other technologies (cellular, satellite) can also provide data connectivity, but are outside the scope of this module.
+
+---
+
+### 4.6.3 Wireless LAN
+
+A **Wireless LAN (WLAN)** allows devices to connect to a LAN **without cables**.
+
+Key components:
+
+- **Wireless Access Point (AP)**  
+  - Concentrates the wireless signals from clients.  
+  - Connects to the existing **copper-based** network infrastructure (e.g., Ethernet).  
+  - Home/small-business wireless routers often combine **router + switch + AP** in a single device.
+
+- **Wireless NIC adapters**  
+  - Provide wireless communication capability to hosts.
+
+Notes:
+
+- Many different WLAN Ethernet-based standards exist; always check **compatibility and interoperability** when purchasing devices.
+- Benefits include **saving on cabling costs** and providing **host mobility**.
+- Because the medium is shared and open, administrators must apply **strong security policies and processes** to protect WLANs from unauthorized access and damage.
+
+---
+
+### 4.6.4 Check Your Understanding – Wireless Media
+
+1. **Question:** True or false. Wireless is not well suited for enterprise networks.  
+   **Answer:** **False** – wireless is commonly used in enterprise networks.
+
+2. **Question:** True or false. Wireless LANs operate in full-duplex allowing all devices to send or receive data at the same time so the number of users does not impact performance.  
+   **Answer:** **False** – WLANs operate in **half-duplex** and share the medium, so more users reduce available bandwidth per user.
+
+3. **Question:** Which of the following wireless standards is best suited for industrial and IoT environments?  
+   **Options:** Zigbee, Wi-Fi, WiMAX, Bluetooth  
+   **Answer:** **Zigbee**
+
+4. **Question:** Which of the following wireless standards is used for Personal Area Networks (PANs) and allows devices to communicate over distances of 1 to 100 meters?  
+   **Options:** Zigbee, Wi-Fi, Bluetooth, WiMAX  
+   **Answer:** **Bluetooth**
+
+---
+
+### 4.6.5 Packet Tracer – Connect a Wired and Wireless LAN
+
+**Objectives**
+
+- Connect to the cloud  
+- Connect Router0  
+- Connect remaining devices  
+- Verify end-to-end connectivity  
+- Examine the physical topology in Packet Tracer   
+
+**Key tasks**
+
+- **Part 1 – Connect to the Cloud**
+  - Connect **Router0 F0/0 → Cloud Eth6** using a **copper straight-through** cable.  
+  - Connect **Cloud Coax7 → Cable Modem Port0** using a **coaxial** cable.
+
+- **Part 2 – Connect Router0**
+  - Connect **Router0 Ser0/0/0 → Router1 Ser0/0** using a **serial** cable.  
+  - Connect **Router0 F0/1 → netacad.pka F0** using an **Ethernet crossover** cable (no auto-MDIX).  
+  - Connect **Router0 Console → Configuration Terminal RS232** using a **console** cable (for management only).
+
+- **Part 3 – Connect Remaining Devices**
+  - Connect **Router1 F1/0 → Switch F0/1**.  
+  - Connect **Cable Modem Port1 → Wireless Router Internet** port.  
+  - Connect **Wireless Router Ethernet 1 → Family PC**.
+
+- **Part 4 – Verify Connections**
+  - From **Family PC**:  
+    - `ping netacad.pka`  
+    - Browse to `http://netacad.pka`.  
+  - From **Home PC**: `ping` the Switch IP address.  
+  - From **Configuration Terminal** to **Router0**:  
+    - Open the terminal session and run `show ip interface brief` to verify interface status.
+
+- **Part 5 – Examine the Physical Topology**
+  - Use the **Physical Workspace** view to inspect:
+    - The number of wires connected to the **switch in the blue rack**.  
+    - Devices and items located on the **Primary Network** and **Secondary Network** tables.  
+    - Why some devices have **two orange cables**.  
+    - Why there is **no rack** in the **Home Network** scene.
+
+> The Packet Tracer file contains open-ended questions (e.g., “Type your answers here”) whose answers depend on the specific activity instance. Leave those as notes or fill them in after you complete the simulation.
+
+---
+
+### 4.6.6 Lab – View Wired and Wireless NIC Information
+
+**Objectives**
+
+- **Part 1:** Identify and work with PC NICs  
+- **Part 2:** Identify and use the system tray network icons   
+
+**Required resources**
+
+- 1 Windows PC with **two NICs** (wired + wireless) and a **wireless connection**.
+
+#### Part 1 – Identify and Work with PC NICs
+
+1. **Network and Sharing Center**
+   - Open **Control Panel → Network and Internet → View network status and tasks**.  
+   - Click **Change adapter settings** to see all available NICs (including VPN adapters).
+
+2. **Work with the wireless NIC**
+   - Enable the wireless connection if it is disabled.  
+   - Use **Connect/Disconnect** to join an authorized SSID.  
+   - Open **Status** to view connection details (SSID, speed, etc.).  
+   - Click **Details…** to see MAC address, IP configuration, and DNS servers.  
+   - Run `ipconfig /all` in **Command Prompt** and compare with the Network Connection Details.  
+   - In **Wireless Properties → Security**, view the security type and (optionally) reveal the network security key.
+
+   _Questions to fill in during the lab:_
+   - What is the **SSID** of the wireless router you are connected to?  
+   - What is the **speed** of your wireless connection?  
+   - What is the **MAC address** of your wireless NIC?  
+   - Do you have **multiple IPv4 DNS servers** listed? If yes, why?
+
+3. **Work with the wired NIC**
+   - In **Network Connections**, right-click **Ethernet** and open **Status** (enable it first if needed and ensure the NIC is cabled to a switch/router).  
+   - View **Details…** for IP/MAC/DNS info.  
+   - Run `ipconfig /all` again and compare Ethernet adapter information with the Status/Details windows.
+
+#### Part 2 – Use the System Tray Network Icons
+
+1. **Use the network icon**
+   - In the system tray, click the **network icon** to view SSIDs in range.  
+   - Open **Network & Internet** settings → **Change adapter options**.  
+   - Disable **Wi-Fi** and see how the available networks list changes.  
+   - You can also disable Ethernet adapters here.
+
+2. **Network Problem / Disabled icons**
+   - Disable all Wi-Fi and Ethernet adapters and observe the **Network Disabled** icon.  
+   - Use the icon to return to network settings and run **Troubleshoot** if needed.  
+   - Re-enable a NIC manually if troubleshooting does not restore connectivity.  
+   - If a NIC is enabled but cannot connect, the **Network Problem** icon appears; use it as a starting point for troubleshooting.
+
+_Reflection question (fill in after doing the lab):_
+
+- **Why would you activate more than one NIC on a PC?**
+
+---
