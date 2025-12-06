@@ -1057,3 +1057,384 @@ _Reflection question (fill in after doing the lab):_
 - **Why would you activate more than one NIC on a PC?**
 
 ---
+
+# CCNA 1 – Module 4.7  
+Module Practice, Packet Tracer Labs and Quiz Notes (Physical Layer)
+
+These are my study notes for section 4.7 of the CCNA 1 course.  
+They summarise the two Packet Tracer activities, the “What did I learn?” text and the
+first four questions of the module quiz about the Physical Layer.
+
+---
+
+## 4.7.1 Packet Tracer – Physical Layer Exploration (Physical Mode)
+
+This activity follows the path of packets from a home network in Monterey, California
+to the web server for the University of Hawaii in Honolulu. The goal is to connect the
+abstract idea of the **physical layer** with real devices, cables and organisations that
+carry our traffic across the internet. :contentReference[oaicite:0]{index=0}  
+
+First I look at the **local IP configuration** on the Home PC. In Packet Tracer the PC
+has a private IPv4 address of `192.168.0.75` and uses `192.168.0.1` as the default
+gateway. The idea is that most end devices on home networks use **private IPv4
+addresses**, while the router performs NAT to a **public IPv4 address** before packets
+go out to the internet.
+
+On my real machine I repeat this with `ipconfig` (Windows) or `ifconfig` / `ip a`
+(Linux/macOS) and note my own IPv4 address and my default gateway. These values
+depend on my network, but the roles are the same: the client address identifies my
+device inside the LAN and the default-gateway address is the LAN interface of my
+router.
+
+Next I find out **what public IPv4 address** my ISP has given to my router. In the
+Packet Tracer world the Home PC opens the browser and visits the fake site
+`www.tellmemyip.com`, which shows the public IPv4 address, the ISP name and an
+approximate location. On a real PC I can do the same with any “what is my IP”
+website. This demonstrates that NAT on the router replaces my private address with
+a routable public address before packets leave the home network.
+
+The activity then focuses on the **local loop** (also called the “last mile”), which is the
+physical connection between my home and my ISP’s **Point of Presence (POP)**.
+Depending on the provider this can be cable, DSL, fibre, cellular, satellite or even
+old-school dial-up. In Packet Tracer the Home Router connects via a **cable modem**
+to the ISP’s CMTS device in a Comcast POP building. In my own network I identify
+whether I use coax, telephone pair, fibre or a wireless link to reach the ISP.
+
+Using the `tracert www.hawaii.edu` command on the Home PC, I follow each **hop**
+between the client and the server. Each hop is one router interface in the path and
+the output shows round-trip time plus either an IP address or both IP address and a
+DNS name. For example, the first hop after the home router is the ISP POP, and hops
+3–9 in the sample belong to different routers inside Comcast’s network in the San
+Francisco Bay Area. :contentReference[oaicite:1]{index=1}  
+
+By looking at the **router names**, I can infer geography. Parts of the domain show
+city and region information such as `monterey.ca.sfba.comcast.net`,
+`santaclara.ca.sfba.comcast.net` and `9greatoaks.ca.ibone.comcast.net`. Packet Tracer
+represents these as separate buildings (Monterey, Santa Clara, Sunnyvale and
+9GreatOaks) connected by high-speed links.
+
+From there, traffic leaves Comcast at an **Internet Exchange Point (IXP)** hosted in an
+Equinix data centre at 9 Great Oaks Boulevard in San Jose. An Internet2 router in the
+same facility becomes the next hop. Internet2 is a specialised high-speed ISP serving
+universities and research institutions.
+
+The path continues through Internet2 from San Jose down to Los Angeles and then
+across the Pacific Ocean via a **submarine fibre-optic cable** to Hawaii. The big jump
+in round-trip time at hop 12 (roughly 85–87 ms instead of ~20 ms) reveals the very
+long physical distance between Los Angeles and Hawaii. In Hawaii, packets pass
+through an Internet2 peer exchange and then enter the **University of Hawaii
+network (uhnet.net)** before finally reaching the web server.
+
+The overall lesson: even a simple web request crosses multiple autonomous systems,
+data centres, IXPs, local loops and long-haul fibre systems, and tools like `traceroute`
+let me see the logical view of this physical journey.
+
+---
+
+## 4.7.2 Packet Tracer – Connect the Physical Layer
+
+This lab is about recognising physical interfaces on routers and switches, adding
+expansion modules, choosing the correct cable types and verifying connectivity using
+CLI commands. :contentReference[oaicite:2]{index=2}  
+
+First I inspect the **East router** on the Physical tab. I identify its **management
+ports**, such as the console and auxiliary (AUX) ports, that are used for out-of-band
+configuration. Then I look at the built-in **LAN and WAN interfaces**. The East router
+provides GigabitEthernet ports for LAN connections and Serial interfaces for WAN
+links. A `show ip interface brief` command confirms how many physical interfaces
+exist, what their names are and whether they are up or down.
+
+The lab highlights the difference in **bandwidth values** on different interface types.
+For example, a GigabitEthernet interface has a much higher default bandwidth than a
+Serial interface, even though serial bandwidth in the lab is just a reference used by
+routing protocols and not the actual clock rate.
+
+Next I check how many **module expansion slots** the East router and Switch2
+have. A router or switch chassis can accept add-on modules to provide more ports or
+new media types. For example, to connect three PCs directly to the East router
+without a new switch, I can install a multi-port FastEthernet switch module in one of
+the empty slots. That single module gives enough additional FastEthernet ports for
+PC1, PC2 and PC3. On Switch2 I can add a fibre Gigabit module so that it can link to
+Switch3 using an optical connection.
+
+Because interfaces on this router model are **not hot-swappable**, the device must be
+powered off before adding or removing modules. I power off East, drag the chosen
+module into a free slot, then power it back on. I repeat the same process for
+Switch2.
+
+With the modules in place, I start **connecting devices**. The idea is to match media
+type and cable type correctly:
+
+The East router connects to Switch1 and Switch4 on GigabitEthernet interfaces using
+copper straight-through cables. PCs connect to the switch or router FastEthernet
+ports, also with straight-through cables. One link between Switch4 and Switch3 uses
+a copper cross-over cable because it is a switch-to-switch copper connection without
+auto-MDI/MDIX. The long-haul link between Switch3 and Switch2 uses fibre-optic
+GigabitEthernet ports, so I use a fibre cable there. The serial WAN link between East
+and West uses back-to-back serial DCE/DTE cabling. Finally, the wired connection to
+the wireless Access Point comes from the GigabitEthernet module port on Switch2.
+
+After cabling, I run `show ip interface brief` again on East and Switch2 to check that
+interfaces are **up/up**. The sample output in the lab shows GigabitEthernet0/0 and
+0/1, Serial0/0/0 and the FastEthernet module ports all operational. If any interface is
+down, it usually means an incorrect cable, wrong port choice or a missing module.
+
+In the last part I bring wireless devices online. On the Laptop and TabletPC, I enable
+the Wireless0 interface so they associate to the Access Point, then open a browser
+and verify that they can reach `www.cisco.srv`. Later, I disable Wi-Fi on the TabletPC
+and enable its cellular 3G/4G interface instead, to see that it can still reach the site
+through an alternative physical access method. Only one of these interfaces should
+be active at a time to avoid confusion.
+
+The main idea of this lab is that **logical connectivity depends on correct physical
+choices**: the right modules, the right cables, and interfaces that are powered and
+configured correctly.
+
+---
+
+## 4.7.3 What did I learn in this module? (Physical Layer Summary)
+
+Before anything else in networking works, there has to be a **physical connection**.
+The OSI physical layer defines how bits are represented, transmitted and received on
+the medium. Network Interface Cards (NICs) connect a device to the medium
+(ethernet NICs for wired connections, WLAN NICs for Wi-Fi).
+
+The physical layer standards cover three main areas: the **physical components**
+(cables, connectors, NICs and interfaces), the **encoding** (how bits are represented
+as signals) and the **signalling** (how those signals are transmitted and interpreted).
+Important performance concepts here are:
+
+Bandwidth, which is the maximum capacity of the medium, usually measured in bits
+per second. Throughput, which is the actual amount of data transferred over time.
+Latency, which is the delay to get data from source to destination. Goodput, which is
+the useful data delivered (excluding headers and retransmissions).
+
+The module divides media into **copper**, **fibre-optic** and **wireless**.
+
+Copper cabling is cheap and easy to work with, but limited by distance and sensitive
+to electrical noise like **EMI (electromagnetic interference)** and **RFI (radio frequency
+interference)**. Copper cables suffer from **crosstalk**, where signals on one pair leak
+into another pair. To fight crosstalk, copper pairs are twisted together and sometimes
+wrapped in shielding.
+
+UTP (Unshielded Twisted Pair) uses pairs of colour-coded wires twisted together and
+encased in a plastic jacket. It has no metal shielding, so careful design of twists and
+pairs is used to minimise crosstalk. STP (Shielded Twisted Pair) adds foil and braid
+shielding for better protection in noisy environments. Coaxial cable uses a central
+conductor surrounded by insulation and shielding and is still used by some ISPs for
+cable internet access.
+
+**Fibre-optic cabling** transmits data as light pulses. It offers very high bandwidth and
+low signal loss over long distances and is immune to EMI and RFI. The core is made
+of very pure glass or plastic, thinner than a human hair. There are different connector
+types (SC, ST, LC etc.) and modes (single-mode and multi-mode). For a single fibre
+connection two separate strands are usually used, one to transmit and one to
+receive, so that full-duplex communication is possible.
+
+**Wireless media** carry electromagnetic signals through air using radio or microwave
+frequencies. They are convenient but affected by coverage limits, interference,
+shared-medium contention and security issues. Common wireless standards include
+Wi-Fi (IEEE 802.11), Bluetooth (IEEE 802.15), WiMAX (IEEE 802.16) and Zigbee
+(IEEE 802.15.4). A wireless LAN needs an access point and wireless NICs.
+
+Overall, the physical layer is where bits become real electrical, optical or radio
+signals, and its limitations and characteristics directly affect everything built on top of
+it.
+
+---
+
+## 4.7.4 Module Quiz – Physical Layer (Q1–Q4 Review)
+
+These are my explanations for the first four quiz questions so I remember the ideas,
+not just the letter of the correct choice.
+
+### Question 1  
+*A network administrator is troubleshooting connectivity issues on a server. Using a
+tester, the administrator notices that the signals generated by the server NIC are
+distorted and not usable. In which layer of the OSI model is the error categorized?*
+
+Distorted electrical signals from the NIC are purely a **physical** problem: voltage
+levels and waveforms on the wire are wrong. No frame or packet has been built yet,
+so this is an issue at the **Physical layer**, not data-link, network or presentation.  
+
+**Answer:** Physical layer.
+
+---
+
+### Question 2  
+*What type of cable is used to connect a workstation serial port to a Cisco router
+console port?*
+
+To access the console on a Cisco router from a PC’s serial port we use a special
+pin-out called a **rollover cable**, where one end’s pins are the reverse of the other
+end. Historically this is an RJ-45 to DB-9 or RJ-45 to USB adapter plus the rollover
+cable. Straight-through and crossover cables are for Ethernet, not console, and
+coax is used with cable/antenna equipment.  
+
+**Answer:** Rollover cable.
+
+---
+
+### Question 3  
+*Why are two strands of fiber used for a single fiber optic connection?*
+
+In most fibre-optic links, one strand is dedicated to transmitting and the other to
+receiving. This allows traffic to be sent and received at the same time in opposite
+directions, which is exactly what **full-duplex** operation means. Crosstalk is not the
+reason here; fibre is already immune to typical copper-style crosstalk, and the
+distance and speed are determined by optics, not just “two strands”.  
+
+**Answer:** They allow for full-duplex connectivity.
+
+---
+
+### Question 4  
+*Which procedure is used to reduce the effect of crosstalk in copper cables?*
+
+Crosstalk happens when the electromagnetic field from one wire pair induces
+unwanted signals in another pair. The primary defence against this in copper LAN
+cabling is **twisting the pairs together**. Each twist causes the induced noise to cancel
+out over the length of the cable. Shielding and careful layout can help, but the key
+standard technique in UTP is the twist pattern.  
+
+**Answer:** Twisting opposing circuit wire pairs together.
+
+---
+### Question 5  
+*What is one advantage of using fiber optic cabling rather than copper cabling?*
+
+The big win of fibre over copper in this context is **distance**. Because fibre uses
+light instead of electrical pulses, it suffers far less attenuation and is immune to EMI
+and RFI. That means the same signal can travel much farther before it needs to be
+regenerated. Cost and ease of termination are actually *disadvantages* of fibre
+compared to UTP, and fibre is usually more fragile around tight bends, not less.  
+
+**Answer:** It is able to carry signals much farther than copper cabling.
+
+---
+
+### Question 6  
+*A network administrator is designing a new network infrastructure that includes both
+wired and wireless connectivity. Under which situation would a wireless connection
+be recommended?*
+
+Wireless is chosen when we care about **mobility and flexibility** more than maximum
+speed or guaranteed, dedicated bandwidth. If the device needs to move around (for
+example, laptops, tablets, handheld scanners), Wi-Fi is ideal. RFI, Ethernet-only
+NICs, or a strict need for a dedicated high-performance link all argue *against*
+wireless.  
+
+**Answer:** The end-user device needs mobility when connecting to the network.
+
+---
+
+### Question 7  
+*Which type of UTP cable is used to connect a PC to a switch port?*
+
+A PC NIC is an MDI device and a switch port is an MDI-X device. Traditionally those
+two are connected with a **straight-through** Ethernet cable (pin 1 to pin 1, 2 to 2,
+etc.). Console and rollover cables are for serial console access to routers/switches,
+not for normal data traffic. Crossover cables are used for certain device-to-device
+connections of the same type (like older switch-to-switch or PC-to-PC links) when
+auto-MDI/MDIX is not available.  
+
+**Answer:** Straight-through.
+
+---
+
+### Question 8  
+*What is the definition of bandwidth?*
+
+In this module, **bandwidth** is defined as the *capacity* of a medium – basically how
+much data can flow through it in a given amount of time. It is usually measured in
+bits per second (Mb/s, Gb/s, etc.). That’s different from “speed of the bits” (which is
+more about propagation speed) and different from “usable data” (that’s goodput).  
+
+**Answer:** The amount of data that can flow from one place to another in a given
+amount of time.
+
+---
+
+### Question 9  
+*Which statement correctly describes frame encoding?*
+
+The physical layer separates **encoding** and **signaling**. Encoding is the process of
+taking the raw bit stream from the data-link layer and mapping it into a predefined
+set of “code groups” or patterns that make it easier for the receiver to recognise
+data vs control bits and keep its clock in sync. Generating the actual electrical,
+optical or radio signals is the signaling function, and using one wave to modify
+another describes modulation.  
+
+**Answer:** It converts bits into a predefined code in order to provide a predictable
+pattern to help distinguish data bits from control bits.
+
+---
+
+### Question 10  
+*What is a characteristic of UTP cabling?*
+
+UTP relies on **cancellation** to fight interference: each pair is twisted so that
+induced noise tends to cancel out over the length of the cable. Cladding is a fibre
+optic term, and woven copper braid/metallic foil are forms of **shielding** used in STP
+or coax, not UTP. UTP is not immune to electrical hazards; it’s actually more exposed
+than shielded media.  
+
+**Answer:** Cancellation.
+
+---
+
+### Question 11  
+*A wireless LAN is being deployed inside the new one-room office that is occupied by
+the park ranger. The office is located at the highest part of the national park. After
+network testing is complete, the technicians report that the wireless LAN signal is
+occasionally affected by some type of interference. What is a possible cause of the
+signal distortion?*
+
+Occasional distortion of a Wi-Fi signal usually points to **radio frequency
+interference (RFI)** from another device that uses a similar frequency band. A classic
+example is a **microwave oven**, which leaks energy around 2.4 GHz – the same band
+used by many Wi-Fi networks. Trees and elevation affect coverage and attenuation,
+but not as sudden “occasional” bursts of interference.  
+
+**Answer:** The microwave oven.
+
+---
+
+### Question 12  
+*What is the purpose of the OSI physical layer?*
+
+The physical layer’s job is simple but fundamental: move **bits** over the physical
+medium. It defines the electrical, optical or radio characteristics, connectors,
+pin-outs, and procedures needed to send and receive the raw bit stream. Error
+detection and frame exchange belong to the data-link layer, and media access
+control is also a data-link function.  
+
+**Answer:** Transmitting bits across the local media.
+
+---
+
+### Question 13  
+*Which characteristic describes crosstalk?*
+
+**Crosstalk** happens when a signal on one wire pair induces an unwanted signal in an
+adjacent pair. The result is distortion of the transmitted messages because the
+receiver hears some of the neighbouring conversation. Weakening over distance is
+attenuation, wireless loss over distance is just path loss, and fluorescent lighting
+causes EMI but not specifically crosstalk.  
+
+**Answer:** The distortion of the transmitted messages from signals carried in
+adjacent wires.
+
+---
+
+### Question 14  
+*What is indicated by the term throughput?*
+
+Throughput is about **what actually gets delivered** over time. Formally, in this
+chapter it is the measure of *how many bits* are transferred across the media during
+a given period, taking into account protocol overhead, collisions, retransmissions and
+so on. Bandwidth is the theoretical capacity, goodput is just the usable data, and
+latency is the time it takes a frame to go from source to destination.  
+
+**Answer:** The measure of the bits transferred across the media over a given period
+of time.
